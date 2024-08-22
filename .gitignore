@@ -32,3 +32,5 @@ override.tf.json
 /terraform/modules/terraform-aws-lambda-node/node_rendered_file.zip
 /terraform/modules/terraform-aws-lambda-py/node_rendered_file.zip
 /terraform/modules/terraform-aws-lambda-py/py_rendered_file.zip
+
+**/.DS_Store
