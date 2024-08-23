@@ -27,3 +27,18 @@ resource "aws_iam_role_policy" "custom_policies" {
   policy   = each.value
   role     = aws_iam_role.exec_role.name
 }
+
+resource "aws_iam_role_policy" "dynamodb_policy" {
+  name   = "DynamoDBPolicy"
+  role   = aws_iam_role.exec_role.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action   = ["dynamodb:GetItem", "dynamodb:Scan"],
+        Effect   = "Allow",
+        Resource = aws_dynamodb_table.text_table.arn
+      }
+    ]
+  })
+}
