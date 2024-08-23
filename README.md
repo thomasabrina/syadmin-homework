@@ -73,3 +73,25 @@ There are two containers running in Compose:
     docker-compose up -d --no-deps --build localstack # to build only the localstack
 
     terraform show # prints the current resources (from state)
+
+## Changes Made
+
+### Task 1: HTTP Endpoint for S3 Bucket
+- Added an HTTP endpoint `/file` that serves a file from an S3 bucket.
+- Created an S3 bucket named `lxz_bucket` using Terraform.
+- Uploaded a file named `lxz-file.txt` to the S3 bucket from the local path `terraform/files/example.txt`.
+
+### Task 2: Private Subnets Configuration
+- Filled the `private_subnets` variable in `local.auto.tfvars` with the following values:
+  ```hcl
+  private_subnets = [
+    "10.90.8.192/26",  # First private subnet
+    "10.90.8.128/26",  # Second private subnet
+    "10.90.8.64/26"    # Third private subnet
+  ]
+  ```
+
+### Task 3: API for DynamoDB
+- Added an API endpoint `/text` that serves text content from a DynamoDB table using a Lambda function.
+- Created a DynamoDB table named `TextTable` with a primary key `id`.
+- Implemented a Lambda function that retrieves an item from the DynamoDB table based on the `id`.
